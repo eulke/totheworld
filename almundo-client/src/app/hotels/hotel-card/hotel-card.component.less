@@ -1,0 +1,44 @@
+.card {
+  background-color: #FFF;
+
+  .card-img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  .card-title {
+    color: #0072B1;
+  }
+
+  .amenities {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  .info {
+    border-left: 1px dashed #CCCCCC;
+    padding: 10px;
+
+    .price {
+      color: #E16800;
+      font-size: 24px;
+      margin-bottom: 20px;
+
+      span {
+        padding-left: 5px;
+        font-size: 32px;
+        font-weight: bold;
+      }
+    }
+
+    button {
+      &.btn {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+    }
+  }
+}

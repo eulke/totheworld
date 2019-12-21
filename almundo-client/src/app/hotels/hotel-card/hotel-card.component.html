@@ -1,0 +1,27 @@
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="../../../assets/images/hotels/{{hotel.image}}"
+        onerror="this.src='../../../assets/images/img-not-available.png'" class="card-img" alt="hotel-image">
+    </div>
+    <div class="col-md-5">
+      <div class="card-body">
+        <h5 class="card-title">{{hotel.name}}</h5>
+        <div class="mb-2">
+          <svg-icon *ngFor="let star of stars" src="../../../assets/icons/filters/star.svg" [stretch]="true"
+            [svgStyle]="{'width.px':20,'height.px':20,'fill':'#FFBC00','margin.px':3}">
+          </svg-icon>
+        </div>
+        <div>
+          <img src="../../../assets/icons/amenities/{{amenity}}.svg" class='amenities' alt=""
+            *ngFor="let amenity of hotel.amenities" />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 info text-center">
+      <p>Precio por noche por habitación</p>
+      <div class="price">ARS<span>{{hotel.price}}</span></div>
+      <button type="button" class="btn btn-primary">Ver hotel</button>
+    </div>
+  </div>
+</div>
