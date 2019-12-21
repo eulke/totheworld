@@ -52,12 +52,19 @@ export class HotelsFilterComponent implements OnInit {
       .map((checked, index) => checked ? this.starsPreferences[index].id : null)
       .filter(value => value !== null);
 
-      this.filters = !!selectedPreferences.toString() ?  {...this.filters, stars: selectedPreferences.toString()} : delete this.filters.stars
+      if (!!selectedPreferences.toString()) {
+        this.filters =  {...this.filters, stars: selectedPreferences.toString()}
+      }
+
+      if (!selectedPreferences.toString()) {
+        delete this.filters.stars
+      }
 
       this.store.dispatch(new GetHotels(this.filters))
-  }
+    }
 
-  onSubmit() {
-    this.store.dispatch(new GetHotels({...this.filters, name: this.hotelsForm.value.name}))
+    onSubmit() {
+      this.filters = {...this.filters, name: this.hotelsForm.value.name}
+      this.store.dispatch(new GetHotels(this.filters))
   }
 }

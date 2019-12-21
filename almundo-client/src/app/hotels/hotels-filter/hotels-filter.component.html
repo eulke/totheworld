@@ -4,18 +4,18 @@
     <div class="filter-name">
       <button class="btn btn-link btn-block" (click)="showInput = !showInput">
         <svg-icon src="../../../assets/icons/filters/search.svg" [stretch]="true"
-          [svgStyle]="{'width.px':10,'height.px':10,'fill':'#0679B3'}">
+          [svgStyle]="{'width.px':15,'height.px':15,'fill':'#0679B3','margin-right.px':5}">
         </svg-icon>Nombre del hotel
       </button>
-      <span *ngIf="showInput">
-        <input type="text" formControlName="name" />
+      <div *ngIf="showInput">
+        <input type="text" formControlName="name" placeholder="Ingrese el nombre del hotel" />
         <button class="btn btn-primary" type="submit">Aceptar</button>
-      </span>
+      </div>
     </div>
     <div class="filter-stars">
       <button class="btn btn-link btn-block" (click)="showStarsFilter = !showStarsFilter">
         <svg-icon src="../../../assets/icons/filters/star.svg" [stretch]="true"
-          [svgStyle]="{'width.px':10,'height.px':10,'fill':'#0679B3'}">
+          [svgStyle]="{'width.px':15,'height.px':15,'fill':'#0679B3','margin-right.px':5}">
         </svg-icon>Estrellas
       </button>
       <div *ngIf="showStarsFilter">
