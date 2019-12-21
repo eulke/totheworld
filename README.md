@@ -1,3 +1,9 @@
+# First of all
+
+When you download this repo, you need to have node and npm installed and install project dependencies. To do this you can run:
+
+    npm install
+
 ## API
  First you need to go to the /almundo-core folder:
 
