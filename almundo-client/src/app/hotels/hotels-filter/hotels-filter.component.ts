@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import { GetHotels } from 'src/shared/actions/hotels.actions';
 
 @Component({
   selector: 'app-hotels-filter',
@@ -9,11 +11,11 @@ import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 export class HotelsFilterComponent implements OnInit {
   private showInput
   private showStarsFilter
-  private qs
   hotelsForm: FormGroup
   starsPreferences = Array.from({ length: 5 }, (v, i) => { return { id: ++i, stars: Array(i) } }).reverse()
+  private filters
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private store: Store) {
     const formControls = this.starsPreferences.map(control => new FormControl(false));
     const selectAllControl = new FormControl(false);
 
@@ -50,10 +52,12 @@ export class HotelsFilterComponent implements OnInit {
       .map((checked, index) => checked ? this.starsPreferences[index].id : null)
       .filter(value => value !== null);
 
-      console.log(selectedPreferences)
+      this.filters = !!selectedPreferences.toString() ?  {...this.filters, stars: selectedPreferences.toString()} : delete this.filters.stars
+
+      this.store.dispatch(new GetHotels(this.filters))
   }
 
   onSubmit() {
-    console.log(this.hotelsForm.value.name)
+    this.store.dispatch(new GetHotels({...this.filters, name: this.hotelsForm.value.name}))
   }
 }

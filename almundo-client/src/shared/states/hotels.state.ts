@@ -6,7 +6,6 @@ import { tap } from 'rxjs/operators';
 
 export class HotelStateModel {
   hotels: Hotel[];
-  filters?: object
 }
 
 @State<HotelStateModel>({
@@ -26,8 +25,8 @@ export class HotelState {
   }
 
   @Action(GetHotels)
-  getHotels({ getState, setState }: StateContext<HotelStateModel>) {
-    return this.hotelService.get_hotels().pipe(tap((result) => {
+  getHotels({ getState, setState }: StateContext<HotelStateModel>, action: GetHotels) {
+    return this.hotelService.get_hotels(action.filters).pipe(tap((result) => {
       const state = getState();
       setState({
         ...state,
