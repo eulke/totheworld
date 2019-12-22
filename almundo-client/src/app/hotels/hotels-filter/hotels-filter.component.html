@@ -1,33 +1,41 @@
-<div class='filter'>
-  <h4 class="filter-title">Filtros</h4>
-  <form [formGroup]="hotelsForm" (ngSubmit)="onSubmit()">
-    <div class="filter-name">
-      <button class="btn btn-link btn-block" (click)="showInput = !showInput">
-        <svg-icon src="../../../assets/icons/filters/search.svg" [stretch]="true"
-          [svgStyle]="{'width.px':15,'height.px':15,'fill':'#0679B3','margin-right.px':5}">
-        </svg-icon>Nombre del hotel
-      </button>
-      <div *ngIf="showInput">
-        <input type="text" formControlName="name" placeholder="Ingrese el nombre del hotel" />
-        <button class="btn btn-primary" type="submit">Aceptar</button>
-      </div>
+<div role="navigation" class="navbar-expand-md">
+  <button class="navbar-toggler btn btn-link btn-block" type="button" (click)="navbarOpen = !navbarOpen">
+    Filtros
+  </button>
+  <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+    <div class='filter'>
+      <h4 class="filter-title">Filtros</h4>
+      <form [formGroup]="hotelsForm" (ngSubmit)="onSubmit()">
+        <div class="filter-name">
+          <button class="btn btn-link btn-block" (click)="showInput = !showInput">
+            <svg-icon src="../../../assets/icons/filters/search.svg" [stretch]="true"
+              [svgStyle]="{'width.px':15,'height.px':15,'fill':'#0679B3','margin-right.px':5}">
+            </svg-icon>Nombre del hotel
+          </button>
+          <div *ngIf="showInput">
+            <input type="text" formControlName="name" placeholder="Ingrese el nombre del hotel" />
+            <button class="btn btn-primary" type="submit">Aceptar</button>
+          </div>
+        </div>
+        <div class="filter-stars">
+          <button class="btn btn-link btn-block" (click)="showStarsFilter = !showStarsFilter">
+            <svg-icon src="../../../assets/icons/filters/star.svg" [stretch]="true"
+              [svgStyle]="{'width.px':15,'height.px':15,'fill':'#0679B3','margin-right.px':5}">
+            </svg-icon>Estrellas
+          </button>
+          <div *ngIf="showStarsFilter">
+            <label><input type="checkbox" formControlName="selectAll" (change)="filterByStars()">Todas las
+              estrellas</label>
+            <label formArrayName="starsPreferences"
+              *ngFor="let stars of hotelsForm.controls.starsPreferences.controls; let i = index">
+              <input type="checkbox" [formControlName]="i" (change)="filterByStars()">
+              <svg-icon *ngFor="let star of starsPreferences[i].stars" src="../../../assets/icons/filters/star.svg"
+                [stretch]="true" [svgStyle]="{'width.px':10,'height.px':10,'fill':'#FFBC00','margin.px':3}">
+              </svg-icon>
+            </label>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="filter-stars">
-      <button class="btn btn-link btn-block" (click)="showStarsFilter = !showStarsFilter">
-        <svg-icon src="../../../assets/icons/filters/star.svg" [stretch]="true"
-          [svgStyle]="{'width.px':15,'height.px':15,'fill':'#0679B3','margin-right.px':5}">
-        </svg-icon>Estrellas
-      </button>
-      <div *ngIf="showStarsFilter">
-        <label><input type="checkbox" formControlName="selectAll" (change)="filterByStars()">Todas las estrellas</label>
-        <label formArrayName="starsPreferences"
-          *ngFor="let stars of hotelsForm.controls.starsPreferences.controls; let i = index">
-          <input type="checkbox" [formControlName]="i" (change)="filterByStars()">
-          <svg-icon *ngFor="let star of starsPreferences[i].stars" src="../../../assets/icons/filters/star.svg"
-            [stretch]="true" [svgStyle]="{'width.px':10,'height.px':10,'fill':'#FFBC00','margin.px':3}">
-          </svg-icon>
-        </label>
-      </div>
-    </div>
-  </form>
+  </div>
 </div>
